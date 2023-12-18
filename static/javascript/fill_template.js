@@ -17,5 +17,5 @@ xhttp.onreadystatechange = function() {
   }
 }
 
-xhttp.open("GET", "http://c1.elifast.com/get_responses?question_number=1");
+xhttp.open("GET", "https://c1.elifast.com/get_responses?question_number=1");
 xhttp.send();
