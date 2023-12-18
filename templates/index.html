@@ -12,8 +12,7 @@
   <body>
     <h1>Qualtrics Setup</h1>
     <p>Each of the following lines will be replaced with its corresponding data from the dataset when pasted into the "HTML view" of the question text:</p>
-    <code>
-&lt;span id="initial_answer_1"&gt;&lt;/span&gt;
+    <code>&lt;span id="initial_answer_1"&gt;&lt;/span&gt;
 &lt;span id="initial_answer_2"&gt;&lt;/span&gt;
 &lt;span id="initial_answer_3"&gt;&lt;/span&gt;
 &lt;span id="initial_answer_4"&gt;&lt;/span&gt;
@@ -21,11 +20,9 @@
 &lt;span id="meta_error_1"&gt;&lt;/span&gt;
 &lt;span id="meta_error_2"&gt;&lt;/span&gt;
 &lt;span id="meta_error_3"&gt;&lt;/span&gt;
-&lt;span id="meta_error_4"&gt;&lt;/span&gt;
-    </code>
+&lt;span id="meta_error_4"&gt;&lt;/span&gt;</code>
     <p>The following javascript code needs to be pasted into the javascript onloaded section:</p>
-    <code>
-const xhttp = new XMLHttpRequest;
+    <code>const xhttp = new XMLHttpRequest;
 
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
@@ -45,7 +42,6 @@ xhttp.onreadystatechange = function() {
 }
 
 xhttp.open("GET", "/get_responses?question_number=1");
-xhttp.send();"
-    </code>
+xhttp.send();"</code>
   </body>
 </html>
