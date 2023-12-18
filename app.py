@@ -11,6 +11,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/test')
+def test():
+    return render_template('test.html')
+
+
 @app.route('/get_responses')
 def get_responses():
     try:
@@ -26,8 +31,10 @@ def get_responses():
         'meta_errors': [response['meta_errors'][question_number - 1] for response in responses],
     }
 
-    return jsonify(response_set)
+    server_response = jsonify(response_set)
+    server_response.headers.add('Access-Control-Allow-Origin', '*')
 
+    return jsonify(response_set)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=3000)

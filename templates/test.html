@@ -1,26 +1,42 @@
-<style>
-    .person {
-        display: flex;
-        flex-direction: column;
-        margin: 0
-    }
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+		Initial Answer 1: <span id="initial_answer_1"></span><br>
+		Initial Answer 2: <span id="initial_answer_2"></span><br>
+		Initial Answer 3: <span id="initial_answer_3"></span><br>
+		Initial Answer 4: <span id="initial_answer_4"></span><br>
+		Meta Error 1: <span id="meta_error_1"></span><br>
+		Meta Error 2: <span id="meta_error_2"></span><br>
+		Meta Error 3: <span id="meta_error_3"></span><br>
+		Meta Error 4: <span id="meta_error_4"></span><br>
+        <script>
 
-    .person p {
-        margin: 0;
-    }
+            const xhttp = new XMLHttpRequest;
 
-    .person p:first-child {
-        text-decoration: underline;
-    }
-</style>
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const server_response = JSON.parse(xhttp.responseText);
 
+                    for (var i = 0; i < server_response['initial_answers'].length; i++) {
+                        const initial_answer_element = document.getElementById("initial_answer_" + (i + 1));
+                        const meta_error_element = document.getElementById("meta_error_" + (i + 1));
 
-<span id="initial_answer_1"></span>
-<span id="initial_answer_2"></span>
-<span id="initial_answer_3"></span>
-<span id="initial_answer_4"></span>
+						if (initial_answer_element != null) {
+							initial_answer_element.innerHTML = server_response["initial_answers"][i];
+						}
 
-<span id="meta_error_1"></span>
-<span id="meta_error_2"></span>
-<span id="meta_error_3"></span>
-<span id="meta_error_4"></span>
+                        if (meta_error_element != null) {
+                            meta_error_element.innerHTML = server_response["meta_errors"][i];
+                        }
+                    }
+                }
+            }
+
+            xhttp.open("GET", "http://c1.elifast.com/get_responses?question_number=1", true);
+            xhttp.send();
+        </script>
+    </body>
+</html>
